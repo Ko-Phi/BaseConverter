@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Converter</h1>
+      <div class="byte-editing">
+        <h2>Edit bytes</h2>
+        <button id="decrement-byte">-</button>
+        <button id="increment-byte">+</button>
+      </div>
+    </div>
+    <div class="container">
+      <div id="inputs">
+        <div class="binary">
+          <div class="input-header">
+            <h2>Binary</h2>
+            <button id="binary-clear-button">Clear</button>
+          </div>
+          <ul class="binary-button-list">
+            <li><button class="binary-button">0</button></li>
+            <li><button class="binary-button">0</button></li>
+            <li><button class="binary-button">0</button></li>
+            <li><button class="binary-button">0</button></li>
+            <li><button class="binary-button">0</button></li>
+            <li><button class="binary-button">0</button></li>
+            <li><button class="binary-button">0</button></li>
+            <li><button class="binary-button">0</button></li>
+          </ul>
+        </div>
+        <div class="deci">
+          <div class="input-header">
+            <h2>Decimal</h2>
+            <button>Clear</button>
+          </div>
+          <input type="text" placeholder="Integer..." id="deci-input" />
+        </div>
+        <div class="hexa">
+          <div class="input-header">
+            <h2>Hexadecimal</h2>
+            <button>Clear</button>
+          </div>
+          <input type="text" placeholder="Hex..." id="hexa-input" />
+        </div>
+      </div>
+      <button id="convert-button">Convert</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
