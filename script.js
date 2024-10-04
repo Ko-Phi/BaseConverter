@@ -1,17 +1,11 @@
 "strict mode";
-
 console.log("Script connected!");
-
 let bytes = 1;
-
 let binaryButtonList;
 
 //puts all elements with .binary-button class in div with class .binary into an array
 let binaryButtons;
-
 let binary = [];
-
-const deciInput = document.getElementById("deci-input");
 
 //loops through all buttons in binaryButtons and adds them to binary[] array
 const addButtonsToArray = function () {
@@ -81,6 +75,14 @@ const listBinary = function () {
   });
   console.log(`Current binary list: ${tempBinaryList}`);
 };
+
+const deciInput = document.getElementById("deci-input");
+const deciClearButton = document.getElementById("deci-clear-button");
+
+deciClearButton.addEventListener("click", function () {
+  console.log("Clearing decimal input...");
+  deciInput.value = "";
+});
 
 const convertButton = document.getElementById("convert-button");
 
