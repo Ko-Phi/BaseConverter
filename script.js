@@ -138,9 +138,73 @@ const findBinarySum = function () {
   deciInput.value = binarySum;
 };
 
+const deciToBinary = function () {
+  console.log(deciInput.value);
+  let deciRemaining = deciInput.value;
+  if (deciRemaining > 2 ** binary.length - 1) {
+    console.log(
+      `Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`
+    );
+    return;
+  }
+  let currentBinary = [];
+  for (let i = binary.length - 1; i >= 0; i--) {
+    if (deciRemaining % 2) {
+      currentBinary.push(1);
+      deciRemaining = (deciRemaining - (deciRemaining % 2)) / 2;
+    } else {
+      currentBinary.push(0);
+      deciRemaining = deciRemaining / 2;
+    }
+
+    console.log(
+      `The remaining decimal value is ${deciRemaining} and the current binary is ${currentBinary} (Backwards)`
+    );
+  }
+
+  binary.forEach((button) => {
+    button.textContent = currentBinary[binary.indexOf(button)];
+    if (button.textContent == 0) {
+      button.classList.remove("black-button");
+      //Asign button new style
+      Object.assign(button.style, {
+        borderColor: "white",
+        backgroundColor: "black",
+        color: "white",
+      });
+      //Asign button new subclass and remove old
+      button.classList.add("black-button");
+      button.classList.remove("white-button");
+    } else {
+      //Asign button new style
+      Object.assign(button.style, {
+        borderColor: "black",
+        backgroundColor: "white",
+        color: "black",
+      });
+      //Asign button new subclass and remove old
+      button.classList.add("white-button");
+    }
+  });
+};
+
 //Convert function
 convertButton.addEventListener("click", function () {
   listBinary();
   console.log("Converting...");
-  findBinarySum();
+  console.log(binary);
+  let binarySum = 0;
+  binary.forEach((value) => {
+    binarySum += value.textContent == 1 ? 2 ** binary.indexOf(value) : 0;
+    console.log(
+      `Binary slot ${binary.indexOf(value) + 1} is a ${
+        value.textContent
+      } - Current sum: ${binarySum}`
+    );
+  });
+  if (binarySum) {
+    findBinarySum();
+  } else if (deciInput.value) {
+    deciToBinary();
+  }
 });
