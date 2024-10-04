@@ -77,6 +77,7 @@ const listBinary = function () {
 };
 
 const deciInput = document.getElementById("deci-input");
+deciInput.value = "";
 const deciClearButton = document.getElementById("deci-clear-button");
 
 deciClearButton.addEventListener("click", function () {
@@ -141,12 +142,15 @@ const findBinarySum = function () {
 const deciToBinary = function () {
   console.log(deciInput.value);
   let deciRemaining = deciInput.value;
+
   if (deciRemaining > 2 ** binary.length - 1) {
     console.log(
       `Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`
     );
+    alert(`Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`);
     return;
   }
+
   let currentBinary = [];
   for (let i = binary.length - 1; i >= 0; i--) {
     if (deciRemaining % 2) {
@@ -156,7 +160,6 @@ const deciToBinary = function () {
       currentBinary.push(0);
       deciRemaining = deciRemaining / 2;
     }
-
     console.log(
       `The remaining decimal value is ${deciRemaining} and the current binary is ${currentBinary} (Backwards)`
     );
@@ -164,6 +167,8 @@ const deciToBinary = function () {
 
   binary.forEach((button) => {
     button.textContent = currentBinary[binary.indexOf(button)];
+
+    //Assign new styles
     if (button.textContent == 0) {
       button.classList.remove("black-button");
       //Asign button new style
