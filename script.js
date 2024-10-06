@@ -248,9 +248,38 @@ const deciToHexa = function () {
   hexaInput.value = currentHexaString;
 };
 
+const hexaKeyReversed = {
+  a: 10,
+  b: 11,
+  c: 12,
+  d: 13,
+  e: 14,
+  f: 15,
+};
 const hexaToDeci = function () {
   let currentHexa = Array.from(hexaInput.value);
   console.log(currentHexa);
+  for (i = 0; i < currentHexa.length; i++) {
+    if (Number(currentHexa[i])) {
+      console.log(`${currentHexa[i]} is a number`);
+      currentHexa[i] = Number(currentHexa[i]);
+    } else {
+      console.log(`${currentHexa[i]} is not a number`);
+      currentHexa[i] = hexaKeyReversed[String(currentHexa[i])];
+      console.log(`New hexa is ${currentHexa[i]}`);
+    }
+  }
+  console.log(currentHexa);
+  let deciSum = 0;
+  for (i = 0; i < currentHexa.length; i++) {
+    deciSum += currentHexa[i] * 16 ** (currentHexa.length - 1 - i);
+    console.log(
+      `Hexa slot ${i} is a ${currentHexa[i]} - Equivalent to: ${
+        currentHexa[i] * 16 ** (currentHexa.length - 1 - i)
+      } - Current sum is: ${deciSum}`
+    );
+  }
+  deciInput.value = deciSum;
 };
 
 //Convert function
@@ -265,6 +294,8 @@ convertButton.addEventListener("click", function () {
     deciToBinary();
     deciToHexa();
   } else if (currentlyPinned === "hexa-pin-button") {
+    hexaToDeci();
+    deciToBinary();
   } else {
     console.log(`Pin input first!`);
   }
