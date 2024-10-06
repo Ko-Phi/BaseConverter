@@ -209,6 +209,50 @@ const deciToBinary = function () {
   });
 };
 
+const hexaInput = document.getElementById("hexa-input");
+hexaInput.value = "";
+const hexaKey = {
+  id10: "a",
+  id11: "b",
+  id12: "c",
+  id13: "d",
+  id14: "e",
+  id15: "f",
+};
+
+const deciToHexa = function () {
+  let deciRemaining = deciInput.value;
+  let currentHexa = [];
+  while (deciRemaining > 0) {
+    if (deciRemaining % 16 == 0) {
+      currentHexa.push(0);
+      deciRemaining = deciRemaining / 16;
+    } else {
+      if (deciRemaining % 16 > 9) {
+        currentHexa.push(hexaKey["id" + (deciRemaining % 16)]);
+      } else {
+        currentHexa.push(deciRemaining % 16);
+      }
+      deciRemaining = (deciRemaining - (deciRemaining % 16)) / 16;
+    }
+    console.log(
+      `The remaining decimal value is ${deciRemaining} and the current binary is ${currentHexa} (Backwards)`
+    );
+  }
+  console.log(`Current hex is: ${currentHexa}`);
+  let currentHexaString = "";
+  for (let i = currentHexa.length - 1; i >= 0; i--) {
+    currentHexaString = currentHexaString + currentHexa[i];
+    console.log(currentHexaString);
+  }
+  hexaInput.value = currentHexaString;
+};
+
+const hexaToDeci = function () {
+  let currentHexa = Array.from(hexaInput.value);
+  console.log(currentHexa);
+};
+
 //Convert function
 convertButton.addEventListener("click", function () {
   listBinary();
@@ -216,7 +260,12 @@ convertButton.addEventListener("click", function () {
   console.log(binary);
   if (currentlyPinned === "binary-pin-button") {
     findBinarySum();
+    deciToHexa();
   } else if (currentlyPinned === "deci-pin-button") {
     deciToBinary();
-  } else console.log(`Pin input first!`);
+    deciToHexa();
+  } else if (currentlyPinned === "hexa-pin-button") {
+  } else {
+    console.log(`Pin input first!`);
+  }
 });
