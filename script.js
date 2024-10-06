@@ -32,22 +32,22 @@ function handleSwaps(button) {
 
   if (button.textContent == 0) {
     //Asign button new style
-    Object.assign(button.style, {
-      borderColor: "black",
-      backgroundColor: "white",
-      color: "black",
-    });
+    // Object.assign(button.style, {
+    //   borderColor: "black",
+    //   backgroundColor: "white",
+    //   color: "black",
+    // });
     button.textContent = 1;
     //Asign button new subclass and remove old
     button.classList.add("white-button");
     button.classList.remove("black-button");
   } else {
     //Asign button new style
-    Object.assign(button.style, {
-      borderColor: "white",
-      backgroundColor: "black",
-      color: "white",
-    });
+    // Object.assign(button.style, {
+    //   borderColor: "white",
+    //   backgroundColor: "black",
+    //   color: "white",
+    // });
     button.textContent = 0;
     //Asign button new subclass and remove old
     button.classList.add("black-button");
@@ -91,7 +91,7 @@ const binaryClearButton = document.getElementById("binary-clear-button");
 
 const incrementByteButton = document.getElementById("increment-byte");
 
-incrementByteButton.addEventListener("click", function () {
+const incrementByte = function () {
   bytes++;
   console.log(`There are now ${bytes} bytes`);
 
@@ -99,12 +99,20 @@ incrementByteButton.addEventListener("click", function () {
     let newBit = document.createElement("button");
     newBit.textContent = 0;
     newBit.className = "binary-button";
+    if (i === 0) {
+      newBit.className = "binary-button end-button-left";
+    } else if (i === 7) {
+      newBit.className = "binary-button end-button-right";
+    }
     binaryButtonList.appendChild(newBit);
   }
 
   addButtonsToArray();
   addBinarySwapFunc();
-});
+};
+incrementByte();
+
+incrementByteButton.addEventListener("click", incrementByte);
 
 binaryClearButton.addEventListener("click", function () {
   console.log("Clearing binary values...");
@@ -112,11 +120,11 @@ binaryClearButton.addEventListener("click", function () {
   binaryButtons.forEach((button) => {
     button.textContent = "0";
     //Asign button new style
-    Object.assign(button.style, {
-      borderColor: "white",
-      backgroundColor: "black",
-      color: "white",
-    });
+    // Object.assign(button.style, {
+    //   borderColor: "white",
+    //   backgroundColor: "black",
+    //   color: "white",
+    // });
     button.textContent = 0;
     //Asign button new subclass and remove old
     button.classList.add("black-button");
@@ -172,23 +180,24 @@ const deciToBinary = function () {
     if (button.textContent == 0) {
       button.classList.remove("black-button");
       //Asign button new style
-      Object.assign(button.style, {
-        borderColor: "white",
-        backgroundColor: "black",
-        color: "white",
-      });
+      // Object.assign(button.style, {
+      //   borderColor: "white",
+      //   backgroundColor: "black",
+      //   color: "white",
+      // });
       //Asign button new subclass and remove old
       button.classList.add("black-button");
       button.classList.remove("white-button");
     } else {
       //Asign button new style
-      Object.assign(button.style, {
-        borderColor: "black",
-        backgroundColor: "white",
-        color: "black",
-      });
+      // Object.assign(button.style, {
+      //   borderColor: "black",
+      //   backgroundColor: "white",
+      //   color: "black",
+      // });
       //Asign button new subclass and remove old
       button.classList.add("white-button");
+      button.classList.remove("black-button");
     }
   });
 };
