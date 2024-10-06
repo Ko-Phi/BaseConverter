@@ -114,7 +114,11 @@ binaryClearButton.addEventListener("click", function () {
 });
 
 //Add pin functonality to pin buttons
-let currentlyPinned;
+const defaultPinnedButton = document.getElementById("binary-pin-button");
+let currentlyPinned = "";
+currentlyPinned = defaultPinnedButton.id;
+defaultPinnedButton.classList.add("selected");
+defaultPinnedButton.classList.remove("unselected");
 pinButtons = document.querySelectorAll(".pin-button");
 console.log(`Pin buttons are`);
 const addPinFunc = function () {
@@ -138,9 +142,7 @@ const addPinFunc = function () {
       } else {
         button.classList.add("unselected");
         button.classList.remove("selected");
-        if (currentlyPinned === button.id) {
-          currentlyPinned = "";
-        }
+        currentlyPinned = "";
         console.log(`Unpinned: ${button.id}
           Currently Pinned: ${currentlyPinned}`);
       }
@@ -148,7 +150,9 @@ const addPinFunc = function () {
   });
 };
 addPinFunc();
+console.log(`Currently pinned: ${currentlyPinned}`);
 
+//Conversion functions
 const findBinarySum = function () {
   let binarySum = 0;
   //loop through array to find binary sum
@@ -210,15 +214,6 @@ convertButton.addEventListener("click", function () {
   listBinary();
   console.log("Converting...");
   console.log(binary);
-  let binarySum = 0;
-  binary.forEach((value) => {
-    binarySum += value.textContent == 1 ? 2 ** binary.indexOf(value) : 0;
-    console.log(
-      `Binary slot ${binary.indexOf(value) + 1} is a ${
-        value.textContent
-      } - Current sum: ${binarySum}`
-    );
-  });
   if (currentlyPinned === "binary-pin-button") {
     findBinarySum();
   } else if (currentlyPinned === "deci-pin-button") {
