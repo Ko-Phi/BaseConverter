@@ -8,7 +8,7 @@
       src="https://kit.fontawesome.com/b0cead0a60.js"
       crossorigin="anonymous"
     ></script>
-    <title>Document</title>
+    <title>Converter</title>
   </head>
   <body>
     <div id="header">
@@ -25,28 +25,19 @@
           <div class="input-header">
             <h2>Binary</h2>
             <div>
-              <button>
-                <i id="binary-pin-button" class="fa-solid fa-thumbtack"></i>
+              <button id="binary-pin-button" class="pin-button unselected">
+                <i class="fa-solid fa-thumbtack"></i>
               </button>
               <button id="binary-clear-button">Clear</button>
             </div>
           </div>
-          <ul class="binary-button-list">
-            <!-- <li><button class="binary-button">0</button></li>
-            <li><button class="binary-button">0</button></li>
-            <li><button class="binary-button">0</button></li>
-            <li><button class="binary-button">0</button></li>
-            <li><button class="binary-button">0</button></li>
-            <li><button class="binary-button">0</button></li>
-            <li><button class="binary-button">0</button></li>
-            <li><button class="binary-button">0</button></li> -->
-          </ul>
+          <ul class="binary-button-list"></ul>
         </div>
         <div class="deci">
           <div class="input-header">
             <h2>Decimal</h2>
             <div>
-              <button>
+              <button id="deci-pin-button" class="pin-button unselected">
                 <i class="fa-solid fa-thumbtack"></i>
               </button>
               <button id="deci-clear-button">Clear</button>
@@ -58,7 +49,7 @@
           <div class="input-header">
             <h2>Hexadecimal</h2>
             <div>
-              <button>
+              <button id="hexa-pin-button" class="pin-button unselected">
                 <i class="fa-solid fa-thumbtack"></i>
               </button>
               <button>Clear</button>

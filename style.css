@@ -110,7 +110,8 @@ input {
   padding: 8px;
 }
 
-.input-header button {
+.input-header button,
+.pin-button.unselected {
   border: 1px solid #3c444d;
   background-color: #151b23;
   color: #f0f6fc;
@@ -123,10 +124,23 @@ input {
   transition-duration: 0.5s;
 }
 
-.input-header button:hover {
-  border-color: #0d1116;
+.input-header button:hover,
+.pin-button.unselected:hover {
+  border-color: #3c444d;
   background-color: #f0f6fc;
   color: #0d1116;
+}
+
+.pin-button.selected {
+  border-color: #3c444d;
+  background-color: #f0f6fc;
+  color: #0d1116;
+}
+
+.pin-button.selected:hover {
+  border-color: #3c444d;
+  background-color: #151515;
+  color: #f0f6fc;
 }
 
 .binary-button-list {
@@ -202,6 +216,7 @@ input {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #3c444d;
 }
+
 #convert-button {
   padding: 8px;
   border: 1px solid #3a914a;

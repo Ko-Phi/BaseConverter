@@ -21,8 +21,7 @@ const addButtonsToArray = function () {
 
 addButtonsToArray();
 
-//Flip binary values
-
+//Adds bit swap functionality for each binary button
 function handleSwaps(button) {
   console.log(
     `Flipping value ${button.textContent} in slot ${
@@ -31,25 +30,13 @@ function handleSwaps(button) {
   );
 
   if (button.textContent == 0) {
-    //Asign button new style
-    // Object.assign(button.style, {
-    //   borderColor: "black",
-    //   backgroundColor: "white",
-    //   color: "black",
-    // });
     button.textContent = 1;
-    //Asign button new subclass and remove old
+    //Asign button new class and remove old
     button.classList.add("white-button");
     button.classList.remove("black-button");
   } else {
-    //Asign button new style
-    // Object.assign(button.style, {
-    //   borderColor: "white",
-    //   backgroundColor: "black",
-    //   color: "white",
-    // });
     button.textContent = 0;
-    //Asign button new subclass and remove old
+    //Asign button new class and remove old
     button.classList.add("black-button");
     button.classList.remove("white-button");
   }
@@ -119,18 +106,48 @@ binaryClearButton.addEventListener("click", function () {
   //Loop through each binary button to assign new data
   binaryButtons.forEach((button) => {
     button.textContent = "0";
-    //Asign button new style
-    // Object.assign(button.style, {
-    //   borderColor: "white",
-    //   backgroundColor: "black",
-    //   color: "white",
-    // });
     button.textContent = 0;
     //Asign button new subclass and remove old
     button.classList.add("black-button");
     button.classList.remove("white-button");
   });
 });
+
+//Add pin functonality to pin buttons
+let currentlyPinned;
+pinButtons = document.querySelectorAll(".pin-button");
+console.log(`Pin buttons are`);
+const addPinFunc = function () {
+  pinButtons.forEach((button) => {
+    console.log(button);
+    button.addEventListener("click", function () {
+      if (button.classList.contains("unselected")) {
+        button.classList.add("selected");
+        button.classList.remove("unselected");
+        //Checks if there's an already pinned item
+        if (currentlyPinned) {
+          console.log(
+            `Unpinned: ${document.getElementById(currentlyPinned).id}`
+          );
+          document.getElementById(currentlyPinned).classList.add("unselected");
+          document.getElementById(currentlyPinned).classList.remove("selected");
+        }
+        currentlyPinned = button.id;
+        console.log(`Pinned: ${button.id}
+          Currently Pinned: ${currentlyPinned}`);
+      } else {
+        button.classList.add("unselected");
+        button.classList.remove("selected");
+        if (currentlyPinned === button.id) {
+          currentlyPinned = "";
+        }
+        console.log(`Unpinned: ${button.id}
+          Currently Pinned: ${currentlyPinned}`);
+      }
+    });
+  });
+};
+addPinFunc();
 
 const findBinarySum = function () {
   let binarySum = 0;
@@ -179,23 +196,9 @@ const deciToBinary = function () {
     //Assign new styles
     if (button.textContent == 0) {
       button.classList.remove("black-button");
-      //Asign button new style
-      // Object.assign(button.style, {
-      //   borderColor: "white",
-      //   backgroundColor: "black",
-      //   color: "white",
-      // });
-      //Asign button new subclass and remove old
       button.classList.add("black-button");
       button.classList.remove("white-button");
     } else {
-      //Asign button new style
-      // Object.assign(button.style, {
-      //   borderColor: "black",
-      //   backgroundColor: "white",
-      //   color: "black",
-      // });
-      //Asign button new subclass and remove old
       button.classList.add("white-button");
       button.classList.remove("black-button");
     }
@@ -216,9 +219,9 @@ convertButton.addEventListener("click", function () {
       } - Current sum: ${binarySum}`
     );
   });
-  if (binarySum) {
+  if (currentlyPinned === "binary-pin-button") {
     findBinarySum();
-  } else if (deciInput.value) {
+  } else if (currentlyPinned === "deci-pin-button") {
     deciToBinary();
-  }
+  } else console.log(`Pin input first!`);
 });
