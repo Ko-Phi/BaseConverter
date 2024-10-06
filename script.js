@@ -6,7 +6,7 @@ const print = function (message) {
   console.log(message);
 };
 print("Script connected!");
-let bytes = 1;
+let bytes = 0;
 let binaryButtonList;
 
 //puts all elements with .binary-button class in div with class .binary into an array
@@ -72,7 +72,6 @@ const listBinary = function () {
 const deciInput = document.getElementById("deci-input");
 deciInput.value = "";
 const deciClearButton = document.getElementById("deci-clear-button");
-
 deciClearButton.addEventListener("click", function () {
   print("Clearing decimal input...");
   deciInput.value = "";
@@ -165,6 +164,8 @@ const findBinarySum = function () {
     print(
       `Binary slot ${binary.indexOf(value) + 1} is a ${
         value.textContent
+      } - Equivalent to: ${
+        value.textContent == 1 ? 2 ** binary.indexOf(value) : 0
       } - Current sum: ${binarySum}`
     );
   });
@@ -173,7 +174,7 @@ const findBinarySum = function () {
 };
 
 const deciToBinary = function () {
-  print(deciInput.value);
+  print(`Inputted decimal is: ${deciInput.value}`);
   let deciRemaining = deciInput.value;
 
   if (deciRemaining > 2 ** binary.length - 1) {
@@ -192,10 +193,11 @@ const deciToBinary = function () {
       deciRemaining = deciRemaining / 2;
     }
     print(
-      `The remaining decimal value is ${deciRemaining} and the current binary is ${currentBinary} (Backwards)`
+      `Remaining decimal value: ${deciRemaining} - Current binary: ${currentBinary} (Backwards)`
     );
   }
 
+  print(`Binary for ${deciInput.value} is: ${currentBinary}`);
   binary.forEach((button) => {
     button.textContent = currentBinary[binary.indexOf(button)];
 
@@ -213,6 +215,11 @@ const deciToBinary = function () {
 
 const hexaInput = document.getElementById("hexa-input");
 hexaInput.value = "";
+const hexaClearButton = document.getElementById("hexa-clear-button");
+hexaClearButton.addEventListener("click", function () {
+  print("Clearing hexa input...");
+  hexaInput.value = "";
+});
 const hexaKey = {
   id10: "a",
   id11: "b",
@@ -238,15 +245,16 @@ const deciToHexa = function () {
       deciRemaining = (deciRemaining - (deciRemaining % 16)) / 16;
     }
     print(
-      `The remaining decimal value is ${deciRemaining} and the current binary is ${currentHexa} (Backwards)`
+      `Remaining decimal value: ${deciRemaining} - Hex code: ${currentHexa} (Backwards)`
     );
   }
-  print(`Current hex is: ${currentHexa}`);
+  print(`Current hex is: ${currentHexa} (Backwards) - Flipping hex...`);
   let currentHexaString = "";
   for (let i = currentHexa.length - 1; i >= 0; i--) {
     currentHexaString = currentHexaString + currentHexa[i];
-    print(currentHexaString);
+    print(`Current hex is: ${currentHexaString}`);
   }
+  print(`Hex code for ${deciInput.value} is: ${currentHexaString}`);
   hexaInput.value = currentHexaString;
 };
 
@@ -257,6 +265,12 @@ const hexaKeyReversed = {
   d: 13,
   e: 14,
   f: 15,
+  A: 10,
+  B: 11,
+  C: 12,
+  D: 13,
+  E: 14,
+  F: 15,
 };
 const hexaToDeci = function () {
   let currentHexa = Array.from(hexaInput.value);
@@ -290,13 +304,19 @@ convertButton.addEventListener("click", function () {
   print("Converting...");
   console.log(binary);
   if (currentlyPinned === "binary-pin-button") {
+    print("Converting binary to decimal...");
     findBinarySum();
+    print("Converting decimal to hexadecimal...");
     deciToHexa();
   } else if (currentlyPinned === "deci-pin-button") {
+    print("Converting decimal to binary...");
     deciToBinary();
+    print("Converting decimal to hexadecimal...");
     deciToHexa();
   } else if (currentlyPinned === "hexa-pin-button") {
+    print("Converting hexadecimal to decimal...");
     hexaToDeci();
+    print("Converting decimal to binary...");
     deciToBinary();
   } else {
     print(`Pin input first!`);

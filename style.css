@@ -9,27 +9,31 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
-  color: #f0f6fc;
 }
 
 h1 {
   line-height: 32px;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 body {
   background-color: #0d1116;
 }
+
 ul {
   display: flex;
   list-style: none;
 }
+
 h2 {
   font-weight: normal;
   line-height: 32px;
 }
+
 input,
 .console p {
   padding: 8px 16px;
@@ -59,6 +63,7 @@ input,
   background-color: #010408;
   border-bottom: 1px solid #3c444d;
 }
+
 .header-left span,
 .header-left a {
   font-size: 16px;
@@ -66,14 +71,17 @@ input,
   border-bottom: 1px solid #010408;
   transition-duration: 0.5s;
 }
+
 .header-left span:hover,
 .header-left a:hover {
   border-bottom: 1px solid #f0f6fc;
 }
+
 .header-left i.fa-github {
   font-size: 32px;
   transition-duration: 0.5s;
 }
+
 .header-left i.fa-github:hover {
   border-radius: 100%;
   box-shadow: 0 0 0 2px #010408, 0 0 0 3px #f0f6fc;
@@ -92,9 +100,11 @@ input,
 .byte-editing {
   display: flex;
 }
+
 .byte-editing > :first-child {
   margin-right: 8px;
 }
+
 .byte-editing button {
   border: 1px solid #3c444d;
   background-color: #151b23;
@@ -105,18 +115,22 @@ input,
   width: 32px;
   transition-duration: 0.5s;
 }
+
 .byte-editing button:hover {
   background-color: #f0f6fc;
   color: #151b15;
 }
+
 .byte-editing div {
   display: flex;
   gap: 0px;
 }
+
 .byte-editing div > :nth-child(1) {
   border-right: none;
   border-radius: 8px 0 0 8px;
 }
+
 .byte-editing div > :nth-child(2) {
   border-radius: 0 8px 8px 0;
 }
@@ -157,7 +171,7 @@ input,
 .pin-button.unselected {
   border: 1px solid #3c444d;
   background-color: #151b23;
-  color: #f0f6fc !important;
+  color: #f0f6fc;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   font-size: 14px;
@@ -246,16 +260,19 @@ input,
   background-color: #0d1116;
   color: #f0f6fc;
 }
+
 .white-button {
   border: 1px solid #3c444d;
   background-color: #3c444d;
   color: #f0f6fc;
 }
+
 .black-button:hover {
   border-color: #0d1116;
   background-color: #f0f6fc;
   color: #0d1116;
 }
+
 .white-button:hover {
   border-color: #3c444d !important;
   background-color: #0d1116 !important;
