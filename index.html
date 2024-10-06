@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/b0cead0a60.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
   </head>
   <body>
@@ -20,7 +24,12 @@
         <div class="binary">
           <div class="input-header">
             <h2>Binary</h2>
-            <button id="binary-clear-button">Clear</button>
+            <div>
+              <button>
+                <i id="binary-pin-button" class="fa-solid fa-thumbtack"></i>
+              </button>
+              <button id="binary-clear-button">Clear</button>
+            </div>
           </div>
           <ul class="binary-button-list">
             <!-- <li><button class="binary-button">0</button></li>
@@ -36,14 +45,24 @@
         <div class="deci">
           <div class="input-header">
             <h2>Decimal</h2>
-            <button id="deci-clear-button">Clear</button>
+            <div>
+              <button>
+                <i class="fa-solid fa-thumbtack"></i>
+              </button>
+              <button id="deci-clear-button">Clear</button>
+            </div>
           </div>
           <input type="text" placeholder="Integer..." id="deci-input" />
         </div>
         <div class="hexa">
           <div class="input-header">
             <h2>Hexadecimal</h2>
-            <button>Clear</button>
+            <div>
+              <button>
+                <i class="fa-solid fa-thumbtack"></i>
+              </button>
+              <button>Clear</button>
+            </div>
           </div>
           <input type="text" placeholder="Hex..." id="hexa-input" />
         </div>

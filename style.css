@@ -81,7 +81,12 @@ input {
   font-size: 16px;
   height: 32px;
   width: 32px;
-  transition-duration: 0.1s;
+  transition-duration: 0.5s;
+}
+
+.byte-editing button:hover {
+  background-color: #f0f6fc;
+  color: #151b15;
 }
 
 .input-header {
@@ -107,14 +112,15 @@ input {
 
 .input-header button {
   border: 1px solid #3c444d;
-  background-color: #0d1116;
+  background-color: #151b23;
   color: #f0f6fc;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   font-size: 14px;
   height: 32px;
-  width: 100px;
-  transition-duration: 0.1s;
+  padding: 8px;
+  width: auto;
+  transition-duration: 0.5s;
 }
 
 .input-header button:hover {
@@ -124,13 +130,20 @@ input {
 }
 
 .binary-button-list {
-  padding: 8px 16px;
+  justify-content: start;
+  padding: 8px 8px;
   font-size: 32px;
   border-radius: 0 0 8px 8px;
   background-color: #0d1116;
   color: #f0f6fc;
   border: 1px solid #3c444d;
   border-top: none;
+}
+
+@media (max-width: 580px) {
+  .binary-button-list {
+    flex-wrap: wrap;
+  }
 }
 
 .binary ul button:hover {
@@ -148,21 +161,25 @@ input {
   width: 32px;
   height: 32px;
   border-radius: 0;
-  transition-duration: 0.1s;
+  transition-duration: 0.5s;
+}
+
+@media (max-width: 580px) {
+  .binary-button {
+    flex: 1 1 12.5%;
+  }
 }
 
 .black-button {
   border: 1px solid #3c444d;
   background-color: #0d1116;
   color: #f0f6fc;
-  transition-duration: 0.1s;
 }
 
 .white-button {
   border: 1px solid #3c444d;
-  background-color: #f0f6fc;
-  color: #0d1116;
-  transition-duration: 0.1s;
+  background-color: #3c444d;
+  color: #f0f6fc;
 }
 
 .black-button:hover {
@@ -192,7 +209,7 @@ input {
   color: #f0f6fc;
   border-radius: 8px;
   font-size: 14px;
-  transition-duration: 0.1s;
+  transition-duration: 0.5s;
   margin: 8px;
 }
 
