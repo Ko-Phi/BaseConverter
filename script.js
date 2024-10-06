@@ -1,9 +1,21 @@
 "strict mode";
+let showConsole = true;
 const consoleText = document.getElementById("console");
 consoleText.value = "";
+const wrapNumbers = function (input) {
+  // Regular expression to match numbers
+  const regex = /(\d+)/g; // Matches one or more digits
+
+  // Replace matching numbers with span elements
+  return input.replace(regex, '<span class="highlight">$1</span>');
+};
+let storedConsoleText = "";
 const print = function (message) {
-  consoleText.innerHTML = `${consoleText.innerHTML + message + "<br>"}`;
+  storedConsoleText = storedConsoleText + wrapNumbers(message) + "<br>";
   console.log(message);
+  if (showConsole) {
+    consoleText.innerHTML = storedConsoleText;
+  }
 };
 print("Script connected!");
 let bytes = 0;
@@ -140,20 +152,46 @@ const addPinFunc = function () {
           document.getElementById(currentlyPinned).classList.remove("selected");
         }
         currentlyPinned = button.id;
-        print(`Pinned: ${button.id}
-          Currently Pinned: ${currentlyPinned}`);
+        print(`Pinned: <span class="selector">${button.id}</span>`);
       } else {
         button.classList.add("unselected");
         button.classList.remove("selected");
         currentlyPinned = "";
-        print(`Unpinned: ${button.id}
-          Currently Pinned: ${currentlyPinned}`);
+        print(`Unpinned: <span class="selector">${button.id}</span>
+    `);
       }
     });
   });
 };
 addPinFunc();
-print(`Currently pinned: ${currentlyPinned}`);
+print(`Currently pinned: <span class="selector">${currentlyPinned}</span>`);
+
+//Adds functionality to console buttons
+showConsole = true;
+const consoleHideShow = document.getElementById("console-hideshow");
+consoleHideShow.addEventListener("click", function () {
+  if (consoleHideShow.classList.contains("unselected")) {
+    consoleHideShow.classList.add("selected");
+    consoleHideShow.classList.remove("unselected");
+    consoleHideShow.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    showConsole = false;
+    consoleText.innerHTML = "";
+    print(`Console hidden`);
+  } else {
+    consoleHideShow.classList.add("unselected");
+    consoleHideShow.classList.remove("selected");
+    consoleHideShow.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    showConsole = true;
+    print(`Console shown`);
+  }
+});
+
+const consoleClearButton = document.getElementById("console-clear-button");
+consoleClearButton.addEventListener("click", function () {
+  storedConsoleText = "";
+  consoleText.innerHTML = "";
+  print("Console cleared!");
+});
 
 //Conversion functions
 const findBinarySum = function () {

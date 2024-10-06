@@ -168,7 +168,7 @@ input,
 }
 
 .input-header button,
-.pin-button.unselected {
+button.unselected {
   border: 1px solid #3c444d;
   background-color: #151b23;
   color: #f0f6fc;
@@ -182,7 +182,7 @@ input,
 }
 
 .input-header button:hover,
-.pin-button.unselected:hover {
+button.unselected:hover {
   border-color: #3c444d;
   background-color: #f0f6fc;
   color: #0d1116;
@@ -202,13 +202,13 @@ input,
   border-radius: 0 8px 8px 0;
 }
 
-.pin-button.selected {
+button.selected {
   border-color: #3c444d;
   background-color: #f0f6fc;
   color: #0d1116;
 }
 
-.pin-button.selected:hover {
+button.selected:hover {
   border-color: #3c444d;
   background-color: #151515;
   color: #f0f6fc;
@@ -232,9 +232,9 @@ input,
 }
 
 .binary ul button:hover {
-  border-color: #0d1116;
-  background-color: #f0f6fc;
-  color: #0d1116;
+  border-color: #3c444d;
+  background-color: #3c444d;
+  color: #f0f6fc;
 }
 
 .binary-button {
@@ -305,4 +305,17 @@ input,
 
 .console {
   padding: 8px;
+}
+.console p,
+.console p span {
+  font-family: "SF Mono", monospace;
+}
+.console button i {
+  width: 15px;
+}
+.highlight {
+  color: #86de74;
+}
+.selector {
+  color: #ff7de9;
 }
