@@ -1,5 +1,11 @@
 "strict mode";
-console.log("Script connected!");
+const consoleText = document.getElementById("console");
+consoleText.value = "";
+const print = function (message) {
+  consoleText.innerHTML = `${consoleText.innerHTML + message + "<br>"}`;
+  console.log(message);
+};
+print("Script connected!");
 let bytes = 1;
 let binaryButtonList;
 
@@ -23,7 +29,7 @@ addButtonsToArray();
 
 //Adds bit swap functionality for each binary button
 function handleSwaps(button) {
-  console.log(
+  print(
     `Flipping value ${button.textContent} in slot ${
       binary.indexOf(button) + 1
     } to ${button.textContent == 0 ? 1 : 0}`
@@ -60,7 +66,7 @@ const listBinary = function () {
   binary.forEach((value) => {
     tempBinaryList.unshift(binary[binary.indexOf(value)].textContent);
   });
-  console.log(`Current binary list: ${tempBinaryList}`);
+  print(`Current binary list: ${tempBinaryList}`);
 };
 
 const deciInput = document.getElementById("deci-input");
@@ -68,7 +74,7 @@ deciInput.value = "";
 const deciClearButton = document.getElementById("deci-clear-button");
 
 deciClearButton.addEventListener("click", function () {
-  console.log("Clearing decimal input...");
+  print("Clearing decimal input...");
   deciInput.value = "";
 });
 
@@ -80,7 +86,7 @@ const incrementByteButton = document.getElementById("increment-byte");
 
 const incrementByte = function () {
   bytes++;
-  console.log(`There are now ${bytes} bytes`);
+  print(`There are now ${bytes} bytes`);
 
   for (let i = 0; i < 8; i++) {
     let newBit = document.createElement("button");
@@ -102,7 +108,7 @@ incrementByte();
 incrementByteButton.addEventListener("click", incrementByte);
 
 binaryClearButton.addEventListener("click", function () {
-  console.log("Clearing binary values...");
+  print("Clearing binary values...");
   //Loop through each binary button to assign new data
   binaryButtons.forEach((button) => {
     button.textContent = "0";
@@ -130,27 +136,25 @@ const addPinFunc = function () {
         button.classList.remove("unselected");
         //Checks if there's an already pinned item
         if (currentlyPinned) {
-          console.log(
-            `Unpinned: ${document.getElementById(currentlyPinned).id}`
-          );
+          print(`Unpinned: ${document.getElementById(currentlyPinned).id}`);
           document.getElementById(currentlyPinned).classList.add("unselected");
           document.getElementById(currentlyPinned).classList.remove("selected");
         }
         currentlyPinned = button.id;
-        console.log(`Pinned: ${button.id}
+        print(`Pinned: ${button.id}
           Currently Pinned: ${currentlyPinned}`);
       } else {
         button.classList.add("unselected");
         button.classList.remove("selected");
         currentlyPinned = "";
-        console.log(`Unpinned: ${button.id}
+        print(`Unpinned: ${button.id}
           Currently Pinned: ${currentlyPinned}`);
       }
     });
   });
 };
 addPinFunc();
-console.log(`Currently pinned: ${currentlyPinned}`);
+print(`Currently pinned: ${currentlyPinned}`);
 
 //Conversion functions
 const findBinarySum = function () {
@@ -158,24 +162,22 @@ const findBinarySum = function () {
   //loop through array to find binary sum
   binary.forEach((value) => {
     binarySum += value.textContent == 1 ? 2 ** binary.indexOf(value) : 0;
-    console.log(
+    print(
       `Binary slot ${binary.indexOf(value) + 1} is a ${
         value.textContent
       } - Current sum: ${binarySum}`
     );
   });
-  console.log(`Binary sum is: ${binarySum}`);
+  print(`Binary sum is: ${binarySum}`);
   deciInput.value = binarySum;
 };
 
 const deciToBinary = function () {
-  console.log(deciInput.value);
+  print(deciInput.value);
   let deciRemaining = deciInput.value;
 
   if (deciRemaining > 2 ** binary.length - 1) {
-    console.log(
-      `Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`
-    );
+    print(`Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`);
     alert(`Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`);
     return;
   }
@@ -189,7 +191,7 @@ const deciToBinary = function () {
       currentBinary.push(0);
       deciRemaining = deciRemaining / 2;
     }
-    console.log(
+    print(
       `The remaining decimal value is ${deciRemaining} and the current binary is ${currentBinary} (Backwards)`
     );
   }
@@ -235,15 +237,15 @@ const deciToHexa = function () {
       }
       deciRemaining = (deciRemaining - (deciRemaining % 16)) / 16;
     }
-    console.log(
+    print(
       `The remaining decimal value is ${deciRemaining} and the current binary is ${currentHexa} (Backwards)`
     );
   }
-  console.log(`Current hex is: ${currentHexa}`);
+  print(`Current hex is: ${currentHexa}`);
   let currentHexaString = "";
   for (let i = currentHexa.length - 1; i >= 0; i--) {
     currentHexaString = currentHexaString + currentHexa[i];
-    console.log(currentHexaString);
+    print(currentHexaString);
   }
   hexaInput.value = currentHexaString;
 };
@@ -258,22 +260,22 @@ const hexaKeyReversed = {
 };
 const hexaToDeci = function () {
   let currentHexa = Array.from(hexaInput.value);
-  console.log(currentHexa);
+  print(currentHexa);
   for (i = 0; i < currentHexa.length; i++) {
     if (Number(currentHexa[i])) {
-      console.log(`${currentHexa[i]} is a number`);
+      print(`${currentHexa[i]} is a number`);
       currentHexa[i] = Number(currentHexa[i]);
     } else {
-      console.log(`${currentHexa[i]} is not a number`);
+      print(`${currentHexa[i]} is not a number`);
       currentHexa[i] = hexaKeyReversed[String(currentHexa[i])];
-      console.log(`New hexa is ${currentHexa[i]}`);
+      print(`New hexa is ${currentHexa[i]}`);
     }
   }
-  console.log(currentHexa);
+  print(currentHexa);
   let deciSum = 0;
   for (i = 0; i < currentHexa.length; i++) {
     deciSum += currentHexa[i] * 16 ** (currentHexa.length - 1 - i);
-    console.log(
+    print(
       `Hexa slot ${i} is a ${currentHexa[i]} - Equivalent to: ${
         currentHexa[i] * 16 ** (currentHexa.length - 1 - i)
       } - Current sum is: ${deciSum}`
@@ -285,7 +287,7 @@ const hexaToDeci = function () {
 //Convert function
 convertButton.addEventListener("click", function () {
   listBinary();
-  console.log("Converting...");
+  print("Converting...");
   console.log(binary);
   if (currentlyPinned === "binary-pin-button") {
     findBinarySum();
@@ -297,6 +299,6 @@ convertButton.addEventListener("click", function () {
     hexaToDeci();
     deciToBinary();
   } else {
-    console.log(`Pin input first!`);
+    print(`Pin input first!`);
   }
 });
