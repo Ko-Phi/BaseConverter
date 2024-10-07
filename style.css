@@ -73,7 +73,9 @@ input,
 }
 
 .header-left span:hover,
-.header-left a:hover {
+.header-left a:hover,
+.header-left span:focus,
+.header-left a:focus {
   border-bottom: 1px solid #f0f6fc;
 }
 
@@ -82,7 +84,8 @@ input,
   transition-duration: 0.5s;
 }
 
-.header-left i.fa-github:hover {
+.header-left i.fa-github:hover,
+.header-left i.fa-github:focus {
   border-radius: 100%;
   box-shadow: 0 0 0 2px #010408, 0 0 0 3px #f0f6fc;
 }
@@ -116,7 +119,8 @@ input,
   transition-duration: 0.5s;
 }
 
-.byte-editing button:hover {
+.byte-editing button:hover,
+.byte-editing button:focus {
   background-color: #f0f6fc;
   color: #151b15;
 }
@@ -136,13 +140,8 @@ input,
 }
 
 @media (max-width: 414px) {
-  .header-left span,
-  .header-left a {
-    font-size: 10px;
-  }
-
   .byte-editing > :first-child {
-    font-size: 10px;
+    font-size: 0;
   }
 }
 
@@ -182,7 +181,9 @@ button.unselected {
 }
 
 .input-header button:hover,
-button.unselected:hover {
+button.unselected:hover,
+.input-header button:focus,
+button.unselected:focus {
   border-color: #3c444d;
   background-color: #f0f6fc;
   color: #0d1116;
@@ -208,7 +209,8 @@ button.selected {
   color: #0d1116;
 }
 
-button.selected:hover {
+button.selected:hover,
+button.selected:active {
   border-color: #3c444d;
   background-color: #151515;
   color: #f0f6fc;
@@ -231,7 +233,8 @@ button.selected:hover {
   }
 }
 
-.binary ul button:hover {
+.binary ul button:hover,
+.binary ul button:active {
   border-color: #3c444d;
   background-color: #3c444d;
   color: #f0f6fc;
@@ -251,6 +254,7 @@ button.selected:hover {
 
 @media (max-width: 580px) {
   .binary-button {
+    transition-duration: 0.75s;
     flex: 1 1 12.5%;
   }
 }
@@ -267,13 +271,15 @@ button.selected:hover {
   color: #f0f6fc;
 }
 
-.black-button:hover {
-  border-color: #0d1116;
+.black-button:hover,
+.black-button:active {
+  border-color: #3c444d;
   background-color: #f0f6fc;
   color: #0d1116;
 }
 
-.white-button:hover {
+.white-button:hover,
+.white-button:active {
   border-color: #3c444d !important;
   background-color: #0d1116 !important;
   color: #f0f6fc !important;
@@ -299,7 +305,8 @@ button.selected:hover {
   margin: 8px;
 }
 
-#convert-button:hover {
+#convert-button:hover,
+#convert-button:focus {
   box-shadow: 0 0 0 2px #0d1116, 0 0 0 4px #3a914a;
 }
 
@@ -309,6 +316,14 @@ button.selected:hover {
 .console p,
 .console p span {
   font-family: "SF Mono", monospace;
+  transition-duration: 0.5s;
+}
+@media (max-width: 540px) {
+  .console p,
+  .console p span {
+    font-size: 10px;
+    line-height: 10px;
+  }
 }
 .console button i {
   width: 15px;
