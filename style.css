@@ -246,13 +246,6 @@ button.selected:focus {
   }
 }
 
-.binary ul button:hover,
-.binary ul button:focus {
-  border-color: #3c444d;
-  background-color: #3c444d;
-  color: #f0f6fc;
-}
-
 .binary-button {
   border: 1px solid #3c444d;
   border-right: 0;
@@ -284,20 +277,23 @@ button.selected:focus {
   color: #f0f6fc;
 }
 
-.black-button:hover,
-.black-button:focus {
-  border-color: #3c444d;
-  background-color: #f0f6fc;
-  color: #0d1116;
+@media (min-width: 580px) {
+  .binary ul button:hover {
+    border-color: #3c444d;
+    background-color: #3c444d;
+    color: #f0f6fc;
+  }
+  .black-button:hover {
+    border-color: #3c444d;
+    background-color: #f0f6fc;
+    color: #0d1116;
+  }
+  .white-button:hover {
+    border-color: #3c444d !important;
+    background-color: #0d1116 !important;
+    color: #f0f6fc !important;
+  }
 }
-
-.white-button:hover,
-.white-button:focus {
-  border-color: #3c444d !important;
-  background-color: #0d1116 !important;
-  color: #f0f6fc !important;
-}
-
 .end-button-left {
   border-radius: 8px 0 0 8px;
 }
