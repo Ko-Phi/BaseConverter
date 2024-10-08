@@ -181,12 +181,25 @@ button.unselected {
 }
 
 .input-header button:hover,
-button.unselected:hover,
-.input-header button:focus,
-button.unselected:focus {
+button.unselected:hover {
   border-color: #3c444d;
   background-color: #f0f6fc;
   color: #0d1116;
+}
+@media (hover: none) {
+  .input-header button:focus,
+  button.unselected:focus {
+    border: 1px solid #3c444d;
+    background-color: #151b23;
+    color: #f0f6fc;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    font-size: 14px;
+    height: 32px;
+    padding: 8px;
+    width: auto;
+    transition-duration: 0.5s;
+  }
 }
 
 .input-header div {
@@ -210,7 +223,7 @@ button.selected {
 }
 
 button.selected:hover,
-button.selected:active {
+button.selected:focus {
   border-color: #3c444d;
   background-color: #151515;
   color: #f0f6fc;
@@ -234,7 +247,7 @@ button.selected:active {
 }
 
 .binary ul button:hover,
-.binary ul button:active {
+.binary ul button:focus {
   border-color: #3c444d;
   background-color: #3c444d;
   color: #f0f6fc;
@@ -272,14 +285,14 @@ button.selected:active {
 }
 
 .black-button:hover,
-.black-button:active {
+.black-button:focus {
   border-color: #3c444d;
   background-color: #f0f6fc;
   color: #0d1116;
 }
 
 .white-button:hover,
-.white-button:active {
+.white-button:focus {
   border-color: #3c444d !important;
   background-color: #0d1116 !important;
   color: #f0f6fc !important;
