@@ -328,9 +328,15 @@ button.selected:active {
 .console button i {
   width: 15px;
 }
-.highlight {
+.number {
   color: #86de74;
 }
 .selector {
   color: #ff7de9;
+}
+.important {
+  color: #fce2a1;
+}
+.square-bracket {
+  color: #74bfff;
 }
