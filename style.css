@@ -252,8 +252,7 @@ button.selected {
   color: #0d1116;
 }
 
-button.selected:hover,
-button.selected:focus {
+button.selected:hover {
   border-color: #3c444d;
   background-color: #151515;
   color: #f0f6fc;
