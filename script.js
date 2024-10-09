@@ -105,25 +105,40 @@ const binaryClearButton = document.getElementById("binary-clear-button");
 
 const incrementByteButton = document.getElementById("increment-byte");
 
-const incrementByte = function () {
-  bytes++;
-  print(`There are now ${bytes} bytes`);
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+let byteIsIncrementing = false;
+async function incrementByte() {
+  if (byteIsIncrementing) {
+    print(`Byte still incrementing`);
+    return;
+  }
+  byteIsIncrementing = true;
 
+  const delayTime = 50;
   for (let i = 0; i < 8; i++) {
     let newBit = document.createElement("button");
     newBit.textContent = 0;
-    newBit.className = "binary-button";
+    newBit.className = "binary-button fade-in";
     if (i === 0) {
-      newBit.className = "binary-button end-button-left";
+      newBit.className = newBit.className + " end-button-left";
     } else if (i === 7) {
-      newBit.className = "binary-button end-button-right";
+      newBit.className = newBit.className + " end-button-right";
     }
     binaryButtonList.appendChild(newBit);
+    await delay(delayTime);
   }
 
   addButtonsToArray();
   addBinarySwapFunc();
-};
+  byteIsIncrementing = false;
+  bytes++;
+  print(`There are now ${bytes} bytes`);
+  if (bytes > 30) {
+    print(`It is recomended hide the in-built console before converting`);
+  }
+}
 incrementByte();
 
 incrementByteButton.addEventListener("click", incrementByte);
@@ -139,6 +154,7 @@ binaryClearButton.addEventListener("click", function () {
     button.classList.remove("white-button");
   });
 });
+const decrementByteButton = document.getElementById("decrement-byte");
 
 //Add pin functonality to pin buttons
 const defaultPinnedButton = document.getElementById("binary-pin-button");
@@ -376,3 +392,14 @@ convertButton.addEventListener("click", function () {
     print("<span class='important'>Pin input first!</span>");
   }
 });
+
+// Function to delay execution in a loop
+function delayedLoop() {
+  for (let i = 0; i < 5; i++) {
+    // Delay each iteration by i * 1000 milliseconds
+    // The delay increases with each iteration
+  }
+}
+
+// Call the function to start the delayed loop
+delayedLoop();
