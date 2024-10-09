@@ -143,6 +143,14 @@ incrementByte();
 
 incrementByteButton.addEventListener("click", incrementByte);
 
+const decrementByteButton = document.getElementById("decrement-byte");
+decrementByteButton.addEventListener("click", function () {
+  for (let i = 0; i < 8; i++) {
+    binaryButtonList.removeChild(binaryButtonList.lastChild);
+  }
+  addButtonsToArray();
+});
+
 binaryClearButton.addEventListener("click", function () {
   print("Clearing binary values...");
   //Loop through each binary button to assign new data
@@ -154,7 +162,6 @@ binaryClearButton.addEventListener("click", function () {
     button.classList.remove("white-button");
   });
 });
-const decrementByteButton = document.getElementById("decrement-byte");
 
 //Add pin functonality to pin buttons
 const defaultPinnedButton = document.getElementById("binary-pin-button");

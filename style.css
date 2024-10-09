@@ -402,7 +402,6 @@ button.selected:focus {
   from {
     opacity: 0;
     scale: 0%;
-    background-color: #3c444d;
     border-radius: 100%;
   }
   50% {
