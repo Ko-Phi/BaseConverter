@@ -301,6 +301,7 @@ hexaClearButton.addEventListener("click", function () {
   print("Clearing hexa input...");
   hexaInput.value = "";
 });
+hexColor = document.getElementById("hex-color");
 const hexaKey = {
   id10: "a",
   id11: "b",
@@ -347,6 +348,9 @@ const deciToHexa = function () {
       `<span class="important">Decimal input was too large (>2^53-1) - Some precision was lost</span>`
     );
   }
+  if (hexaInput.value.length == 6) {
+    hexColor.style.backgroundColor = `#${hexaInput.value}`;
+  }
 };
 
 const hexaKeyReversed = {
@@ -365,6 +369,9 @@ const hexaKeyReversed = {
 };
 const hexaToDeci = function () {
   let currentHexa = Array.from(hexaInput.value);
+  if (hexaInput.value.length == 6) {
+    hexColor.style.backgroundColor = `#${hexaInput.value}`;
+  }
   print(`Inputted hex value: <span class="number">${currentHexa}</span>`);
   for (i = 0; i < currentHexa.length; i++) {
     if (Number(currentHexa[i])) {
@@ -418,14 +425,3 @@ convertButton.addEventListener("click", function () {
     print("<span class='error'>Pin input first!</span>");
   }
 });
-
-// Function to delay execution in a loop
-function delayedLoop() {
-  for (let i = 0; i < 5; i++) {
-    // Delay each iteration by i * 1000 milliseconds
-    // The delay increases with each iteration
-  }
-}
-
-// Call the function to start the delayed loop
-delayedLoop();

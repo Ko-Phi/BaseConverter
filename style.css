@@ -237,12 +237,16 @@ button.unselected:hover {
   gap: 0px;
 }
 
+#hex-color {
+  margin-left: 8px;
+  width: 100px;
+}
 .input-header div > :nth-child(1) {
   border-right: none;
   border-radius: 8px 0 0 8px;
 }
 
-.input-header div > :nth-child(2) {
+.input-header div.button-group > :nth-child(2) {
   border-radius: 0 8px 8px 0;
 }
 
