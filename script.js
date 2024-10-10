@@ -144,12 +144,16 @@ incrementByte();
 incrementByteButton.addEventListener("click", incrementByte);
 
 const decrementByteButton = document.getElementById("decrement-byte");
-decrementByteButton.addEventListener("click", function () {
+decrementByteButton.addEventListener("click", decrementByte);
+
+async function decrementByte() {
+  const delayTime = 25;
   for (let i = 0; i < 8; i++) {
     binaryButtonList.removeChild(binaryButtonList.lastChild);
+    await delay(delayTime);
   }
   addButtonsToArray();
-});
+}
 
 binaryClearButton.addEventListener("click", function () {
   print("Clearing binary values...");
@@ -247,11 +251,13 @@ const findBinarySum = function () {
 const deciToBinary = function () {
   print(`Inputted decimal is: ${deciInput.value}`);
   let deciRemaining = deciInput.value;
-
   if (deciRemaining > 2 ** binary.length - 1) {
-    print(`Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`);
+    print(
+      `<span class="error">Decimal too big! ${deciRemaining} > ${
+        2 ** binary.length - 1
+      }</span>`
+    );
     alert(`Decimal too big! ${deciRemaining} > ${2 ** binary.length - 1}`);
-    return;
   }
 
   let currentBinary = [];
@@ -267,7 +273,11 @@ const deciToBinary = function () {
       `Remaining decimal value: ${deciRemaining} - Current binary: [${currentBinary}] (Backwards)`
     );
   }
-
+  if (Number(deciInput.value) > 2 ** 53 - 1) {
+    print(
+      `<span class="important">Decimal input was too large (>2^53-1) - Some precision was lost</span>`
+    );
+  }
   print(`Binary for ${deciInput.value} is: [${currentBinary}]`);
   binary.forEach((button) => {
     button.textContent = currentBinary[binary.indexOf(button)];
@@ -319,15 +329,24 @@ const deciToHexa = function () {
       `Remaining decimal value: ${deciRemaining} - Hex code: [${currentHexa}] (Backwards)`
     );
   }
-  print(`Current hex is: [${currentHexa}] (Backwards) - Flipping hex...`);
+  print(
+    `Current hex is: [<span class="number">${currentHexa}</span>] (Backwards) - Flipping hex...`
+  );
   let currentHexaString = "";
   for (let i = currentHexa.length - 1; i >= 0; i--) {
     currentHexaString = currentHexaString + currentHexa[i];
-    print(`Current hex is: ${currentHexaString}`);
+    print(`Current hex is: <span class="number">${currentHexaString}</span>`);
   }
   currentHexaString = currentHexaString ? currentHexaString : 0;
-  print(`Hex code for ${deciInput.value} is: ${currentHexaString}`);
+  print(
+    `Hex code for ${deciInput.value} is: <span class="number">${currentHexaString}</span>`
+  );
   hexaInput.value = currentHexaString;
+  if (Number(deciInput.value) > 2 ** 53 - 1) {
+    print(
+      `<span class="important">Decimal input was too large (>2^53-1) - Some precision was lost</span>`
+    );
+  }
 };
 
 const hexaKeyReversed = {
@@ -396,7 +415,7 @@ convertButton.addEventListener("click", function () {
     print("<span class='important'>Converting decimal to binary...</span>");
     deciToBinary();
   } else {
-    print("<span class='important'>Pin input first!</span>");
+    print("<span class='error'>Pin input first!</span>");
   }
 });
 

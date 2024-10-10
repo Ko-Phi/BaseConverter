@@ -396,7 +396,9 @@ button.selected:hover {
 .square-bracket {
   color: #74bfff;
 }
-
+.error {
+  color: #ffb3d2;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
