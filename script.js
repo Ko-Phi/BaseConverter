@@ -135,8 +135,10 @@ async function incrementByte() {
   byteIsIncrementing = false;
   bytes++;
   print(`There are now ${bytes} bytes`);
-  if (bytes > 30) {
-    print(`It is recomended hide the in-built console before converting`);
+  if (bytes > 3) {
+    print(
+      `<span class="important">It is recomended hide the in-built console before converting</span>`
+    );
   }
 }
 incrementByte();
@@ -153,6 +155,13 @@ async function decrementByte() {
     await delay(delayTime);
   }
   addButtonsToArray();
+  bytes--;
+  print(`There are now ${bytes} bytes`);
+  if (bytes > 3) {
+    print(
+      `<span class="important">It is recomended hide the in-built console before converting</span>`
+    );
+  }
 }
 
 binaryClearButton.addEventListener("click", function () {
